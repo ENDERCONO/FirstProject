@@ -250,7 +250,9 @@ CinematicZoneController := class(creative_device):
 
     # --- Zone sequences ------------------------------------------------------
 
-    OnZoneEntered<public>(Agent : agent, Group : cinematic_zone_group):void =
+    # Internal, not <public>: its parameter type cinematic_zone_group is
+    # internal, and a public function cannot expose a less-visible type.
+    OnZoneEntered(Agent : agent, Group : cinematic_zone_group):void =
         if (ZonesRequireStart?, not LoopsRunning?):
             return
         if (Victim := player[Agent], not BusyPlayers[Victim]?):
