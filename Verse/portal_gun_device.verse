@@ -38,6 +38,23 @@ using { /UnrealEngine.com/Temporary/SpatialMath }
 #      teleporting), Visible During Game off.
 #    - Input triggers: Left on "Fire", Right on "Aim/Target"; leave them
 #      registered for all players.
+#
+# TODO (for whoever picks this up — the achievements device was NOT in this
+# repo when this was written, so none of this is wired yet):
+#    - Add the portal gun as a buyable item in the Achievements device's shop,
+#      following how that device already sells its other items (item granter
+#      or whatever pattern it uses). Match its naming/@editable layout.
+#    - Make sure the item it grants is the SAME item set as HoldCheck's key
+#      item at KeyItemIndex, otherwise FirePortal never passes the hold check.
+#    - If the shop tracks ownership itself (e.g. a [player]logic of unlocked
+#      items), consider exposing something like PortalGunDevice.OnGunBought /
+#      ClearPlayerPortals(Player) for it to call, e.g. to clear a player's
+#      portals when the gun is removed. Nothing here depends on that today.
+#    - This file was written without compiling. Double-check in UEFN:
+#        * Raycast(): FindSweepHits overload, collision_sphere, sweep_hit
+#          field names, /Verse.org <-> UnrealEngine FromVector3 conversions.
+#        * conditional_button_device.IsHoldingItem[Agent, KeyItemIndex].
+#        * teleporter_device.TeleportTo[] (moving the teleporter with the prop).
 
 # Verse has no closures, so one watcher per teleporter binds its index to the
 # EnterEvent.
